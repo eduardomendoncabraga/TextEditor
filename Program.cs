@@ -30,7 +30,22 @@ namespace TextEditor
 
         }
 
-        static void Abrir() { }
+        static void Abrir() {
+            Console.Clear();
+            Console.WriteLine("Qual o caminho do arquivo?");
+            string path = Console.ReadLine();
+
+            using var file = new StreamReader(path);
+
+            string text = file.ReadToEnd();
+
+            Console.WriteLine(text);
+
+            Console.WriteLine("");
+            Console.ReadLine();
+            Menu();
+        }
+
         static void Editar()
         {
             Console.Clear();
@@ -55,13 +70,11 @@ namespace TextEditor
             Console.WriteLine("Qual o caminho para salvar o caminho?");
             var path = Console.ReadLine();
 
-
             using var file = new StreamWriter(path);
             file.Write(text);
 
             Console.WriteLine($"Arquivo {path} salvo com sucesso!");
             Menu();
-
         }
     }
 }
